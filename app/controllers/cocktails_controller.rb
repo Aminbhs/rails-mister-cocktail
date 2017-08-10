@@ -1,6 +1,9 @@
 class CocktailsController < ApplicationController
 
   def index
-    @cocktails = ("mojito")
+    @cocktails = Cocktail.All
+  end
+
+  def new
   end
 end
