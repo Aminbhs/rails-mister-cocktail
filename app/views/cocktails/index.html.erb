@@ -1,9 +1,31 @@
-<h1>Yo</h1>
 
-<ul>
+<div class="container">
+
+<h1>The cocktails <i class="fa fa-glass" aria-hidden="true"></i></h1>
+
+    <%= link_to new_cocktail_path do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+
+
+<ul class="list-unstyled">
   <% @cocktails.each do |thing| %>
     <li>
-      <%= thing.name %>
+      <%= link_to thing.name, cocktail_path(thing) %>
+        |
+      <%= link_to edit_cocktail_path(thing) do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+        |
+      <%= link_to cocktail_path(thing), method: :delete do %>
+      <i class="fa fa-times"></i>
+
+
+    <% end %>
+
     </li>
+
+
   <% end %>
 </ul>
+</div>
