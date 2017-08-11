@@ -20,7 +20,6 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
 
 
   def show
-    @dose = Dose.new
   end
 
   def update
