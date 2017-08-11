@@ -3,4 +3,7 @@
   <%= link_to edit_cocktail_path(@cocktail) do %>
     <i class="fa fa-pencil"></i>
   <% end %>
+    <%= link_to cocktail_path(@cocktail), method: :delete do %>
+      <i class="fa fa-times"></i>
+    <% end %>
 </div>
