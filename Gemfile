@@ -37,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'figaro'
 
+gem 'carrierwave', '~> 0.11.2'
+gem 'cloudinary'
+
 gem "bootstrap-sass"
 gem "font-awesome-sass"
 gem "simple_form"
