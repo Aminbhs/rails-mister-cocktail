@@ -9,12 +9,18 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
   end
 
   def create
+
     @cocktail = Cocktail.new(cocktail_params)
+    if params[:photo] == nil
+      params[:photo] = "hhttp://aminbhs.fr/img/logo-ab.png"
+    end
     @cocktail.save
     redirect_to cocktail_path(@cocktail)
-
   end
+
+
   def show
+    @dose = Dose.new
   end
 
   def update
@@ -38,6 +44,6 @@ private
   end
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :photo, :photo_cache)
+    params.require(:cocktail).permit(:name, :photo, :photo_cache, :photo_url)
   end
 end

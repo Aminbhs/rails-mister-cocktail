@@ -10,19 +10,22 @@
   <% end %>
 </div>
   <% @cocktails.each do |thing| %>
-  <% photo = thing.photo.url || "https://www.tuxboard.com/photos/2014/10/Cocktails.jpg"   %>
+    <% photo = thing.photo.url %>
+    <% if photo == nil %>
+      <% photo = "" %>
+    <% end %>
   <div class="col-sm-4">
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photo, height: 300, width: 400, crop: :fill %>');">
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photo , height: 300, width: 400, crop: :fill %>');">
       <div class="card-category">Popular</div>
-      <div class="card-description">
-        <h2><%= link_to thing.name, cocktail_path(thing) %></h2>
-        <%= link_to edit_cocktail_path(thing) do %>
-            <i class="fa fa-pencil"></i>
+        <div class="card-description">
+          <h2><%= link_to thing.name, cocktail_path(thing) %></h2>
+          <%= link_to edit_cocktail_path(thing) do %>
+              <i class="fa fa-pencil"></i>
           <% end %>
-        <%= link_to cocktail_path(thing), method: :delete do %>
-          <i class="fa fa-times"></i>
-        <% end %>
-      </div>
+          <%= link_to cocktail_path(thing), method: :delete do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        </div>
       </div>
   </div>
   <% end %>

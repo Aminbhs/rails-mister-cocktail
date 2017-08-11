@@ -6,31 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Ingredient.destroy
-response = open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read
+# Ingredient.destroy
+# response = open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read
+# repos = JSON.parse(response)
+# # => repos is an `Array` of `Hashes`.
+
+# var = repos['drinks']
+
+# var.each do |key|
+#     # puts value
+#      ingredient = Ingredient.new(name: key['strIngredient1'])
+#      ingredient.save!
+# end
+# Cocktail.delete_all
+
+#sans rails
+# require "json"
+# require 'open-uri'
+
+Cocktail.destroy_all
+
+response = open("http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail").read
 repos = JSON.parse(response)
-# => repos is an `Array` of `Hashes`.
 
 var = repos['drinks']
 
 var.each do |key|
-    # puts value
-     ingredient = Ingredient.new(name: key['strIngredient1'])
-     ingredient.save!
+    image = key['strDrinkThumb']
+    cocktail = Cocktail.new(name: key['strDrink'])
+    if image != nil
+    cocktail.remote_photo_url = image
+    else
+    cocktail.remote_photo_url = "https://www.tuxboard.com/photos/2014/10/Cocktails.jpg"
+  end
+    cocktail.save!
 end
-
-
-response = open("http://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic").read
-repos = JSON.parse(response)
-# => repos is an `Array` of `Hashes`.
-
-var = repos['drinks']
-
-var.each do |key|
-    # puts value
-     cocktail = Cocktail.new(name: key['strDrink'])
-     cocktail.save!
-end
-
-
-

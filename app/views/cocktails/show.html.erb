@@ -6,6 +6,10 @@
     <%= link_to cocktail_path(@cocktail), method: :delete do %>
       <i class="fa fa-times"></i>
     <% end %>
-        <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
+    <% photo = @cocktail.photo.url %>
+    <% if photo == nil %>
+      <% photo = "" %>
+    <% end %>
+        <%= cl_image_tag photo, height: 300, width: 400, crop: :fill %>
 
 </div>
