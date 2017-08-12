@@ -9,13 +9,12 @@ before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-
     @cocktail = Cocktail.new(cocktail_params)
-    if params[:photo] == nil
-      params[:photo] = "hhttp://aminbhs.fr/img/logo-ab.png"
-    end
-    @cocktail.save
-    redirect_to cocktail_path(@cocktail)
+      if @cocktail.photo? == false
+        @cocktail[:photo] = "http://res.cloudinary.com/dqaegxqwj/image/upload/v1502459827/p0hdtqliibhvyvxqq9q5.jpg"
+      end
+        @cocktail.save!
+        redirect_to cocktail_path(@cocktail)
   end
 
 

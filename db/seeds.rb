@@ -6,25 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Ingredient.destroy
-# response = open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read
-# repos = JSON.parse(response)
-# # => repos is an `Array` of `Hashes`.
+response = open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read
+repos = JSON.parse(response)
+# => repos is an `Array` of `Hashes`.
 
-# var = repos['drinks']
+var = repos['drinks']
 
-# var.each do |key|
-#     # puts value
-#      ingredient = Ingredient.new(name: key['strIngredient1'])
-#      ingredient.save!
-# end
-# Cocktail.delete_all
+var.each do |key|
+    # puts value
+     ingredient = Ingredient.new(name: key['strIngredient1'])
+     ingredient.save!
+end
 
 #sans rails
 # require "json"
 # require 'open-uri'
 
-Cocktail.destroy_all
 
 response = open("http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail").read
 repos = JSON.parse(response)
